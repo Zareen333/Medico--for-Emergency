@@ -1,0 +1,465 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background-color: #c0d8e8;
+    background: linear-gradient(180deg, #d2e4f0 0%, #a8cbdf 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Outer Canvas Container */
+.dashboard-container {
+    width: 100%;
+    max-width: 1350px;
+    height: 90vh;
+    background-color: #eaf1f7;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(15, 35, 66, 0.15);
+    border: 2px solid #1f3a52;
+}
+
+/* --- Dark Blue Sidebar Navigation --- */
+.sidebar {
+    width: 260px;
+    background-color: #1f3a52;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0 24px 20px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding-right: 20px;
+}
+
+.avatar-box {
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    color: #1f3a52;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.user-info h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.user-info p {
+    font-size: 0.75rem;
+    color: #8da4b8;
+}
+
+.sidebar-menu {
+    flex: 1;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #a3b8cc;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-menu li.active a, .sidebar-menu a:hover {
+    background-color: #eaf1f7;
+    color: #1f3a52;
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    padding-right: 20px;
+}
+
+.logout-btn {
+    color: #a3b8cc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Main Dashboard Area --- */
+.main-content {
+    flex: 1;
+    padding: 24px 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Top Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-header h2 {
+    color: #1f3a52;
+    font-size: 1.4rem;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-box {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    width: 280px;
+    gap: 10px;
+    border: 1px solid #d0deea;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 0.85rem;
+    color: #1f3a52;
+}
+
+.search-box i {
+    color: #8da4b8;
+}
+
+.icon-group {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    background-color: #ffffff;
+    border: 1px solid #d0deea;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1f3a52;
+    cursor: pointer;
+}
+
+/* Dashboard Banner Title */
+.dashboard-banner h1 {
+    color: #1f3a52;
+    font-size: 2rem;
+    text-align: center;
+    margin: 5px 0 10px 0;
+}
+
+/* Overview Metric Cards (KPI Row) */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.metric-card {
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid #d6e2ed;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.bg-blue { background-color: #e3effd; color: #1f3a52; }
+.bg-green { background-color: #e1f7ec; color: #108a00; }
+.bg-teal { background-color: #e0f6f6; color: #008080; }
+.bg-red { background-color: #fde8e8; color: #d93838; }
+
+.card-alert {
+    background-color: #fff5f5;
+    border-color: #f8cece;
+}
+
+.card-info h3 {
+    font-size: 1.2rem;
+    color: #1f3a52;
+}
+
+.card-info p {
+    font-size: 0.75rem;
+    color: #6b8296;
+}
+
+/* Filter Panel */
+.filter-panel {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #d6e2ed;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1f3a52;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #c8d8e6;
+    background-color: #f4f8fb;
+    color: #1f3a52;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.search-btn {
+    margin-left: auto;
+    background-color: #1f3a52;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Hospital Grid Section */
+.results-section h3 {
+    color: #1f3a52;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.hospital-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.hospital-card {
+    background-color: #ffffff;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #d6e2ed;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.badge {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.badge-govt { background-color: #e3f2fd; color: #1976d2; }
+.badge-pvt { background-color: #f3e5f5; color: #7b1fa2; }
+
+.hospital-card h3 {
+    color: #1f3a52;
+    font-size: 1rem;
+}
+
+.hospital-card p {
+    font-size: 0.8rem;
+    color: #52677a;
+}
+
+.action-btn {
+    margin-top: 8px;
+    background-color: #eaf1f7;
+    color: #1f3a52;
+    border: 1px solid #1f3a52;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #1f3a52;
+    color: #ffffff;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(15, 35, 66, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px; right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #1f3a52;
+}
+
+.directions-btn {
+    background-color: #108a00;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+/* SOS Modal Specifics */
+.sos-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d93838;
+}
+
+.sos-icon {
+    font-size: 2rem;
+}
+
+.sos-confirm-btn {
+    background-color: #d93838;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.doc-directory p {
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    color: #1f3a52;
+}
+
+/* Dark Mode Theme */
+body.dark-theme {
+    background: #0f1e2d;
+}
+
+body.dark-theme .dashboard-container {
+    background-color: #152738;
+    border-color: #2c4760;
+}
+
+body.dark-theme .main-content,
+body.dark-theme .top-header h2,
+body.dark-theme .dashboard-banner h1,
+body.dark-theme .results-section h3,
+body.dark-theme .hospital-card h3 {
+    color: #ffffff;
+}
+
+body.dark-theme .metric-card,
+body.dark-theme .filter-panel,
+body.dark-theme .hospital-card,
+body.dark-theme .search-box,
+body.dark-theme .icon-btn {
+    background-color: #1f384f;
+    border-color: #2c4d6c;
+    color: #ffffff;
+}
+
+body.dark-theme .search-box input {
+    background-color: transparent;
+    color: #ffffff;
+}

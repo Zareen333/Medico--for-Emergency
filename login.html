@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medico - Emergency Portal Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #eef4f8;
+        }
+
+        /* Left Split Panel - Dark Blue with Striped Pattern */
+        .login-sidebar {
+            width: 40%;
+            background: linear-gradient(135deg, #1b365d 0%, #0f2342 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Diagonal Subtle Dark Stripe Decorative Overlay */
+        .login-sidebar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.03),
+                rgba(255, 255, 255, 0.03) 20px,
+                transparent 20px,
+                transparent 40px
+            );
+            pointer-events: none;
+        }
+
+        .brand-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .brand-content p {
+            color: #b0c4de;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Right Split Panel - Clean Muted Blue Form */
+        .login-form-container {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f8fb;
+        }
+
+        .login-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(27, 54, 93, 0.08);
+        }
+
+        .login-card h2 {
+            color: #1b365d;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .login-card p {
+            color: #6c7a89;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #1b365d;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid #dcdfe6;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #1b365d;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background-color: #1b365d;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #0f2342;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .login-sidebar, .login-form-container {
+                width: 100%;
+            }
+            .login-sidebar {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Striped Dark Blue Section -->
+    <div class="login-sidebar">
+        <div class="brand-content">
+            <h1>🏥 Medico Emergency</h1>
+            <p>Real-time hospital finder, emergency bed reservation, and instant dispatch management portal.</p>
+        </div>
+    </div>
+
+    <!-- Right Login Form Section -->
+    <div class="login-form-container">
+        <div class="login-card">
+            <h2>Welcome Back</h2>
+            <p>Please enter your credentials to access the emergency network.</p>
+
+            <form action="index.html" method="GET">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="name@domain.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="login-btn">Log In to Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

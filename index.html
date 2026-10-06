@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medico - Emergency & Healthcare Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Dark Blue Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-section">
+                <div class="avatar-box">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h3>User Profile</h3>
+                    <p>user@medico.com</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="active"><a href="#"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fa-solid fa-hospital"></i> Hospitals</a></li>
+                    <li><a href="#"><i class="fa-solid fa-truck-medical"></i> SOS Ambulance</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-doctor"></i> Doctors</a></li>
+                    <li><a href="#"><i class="fa-solid fa-calendar-check"></i> Bookings</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard View Area -->
+        <main class="main-content">
+
+            <!-- Top Header & Search Bar -->
+            <header class="top-header">
+                <h2>Welcome Back!</h2>
+                <div class="header-controls">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search hospital, equipment, service...">
+                    </div>
+                    <div class="icon-group">
+                        <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
+                        <button class="icon-btn"><i class="fa-solid fa-moon"></i></button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Section Title -->
+            <div class="dashboard-banner">
+                <h1>Emergency & Hospital Finder</h1>
+            </div>
+
+            <!-- Overview Metric Cards (KPI Row) -->
+            <section class="overview-grid">
+                <div class="metric-card">
+                    <div class="card-icon bg-blue"><i class="fa-solid fa-bed"></i></div>
+                    <div class="card-info">
+                        <h3>48</h3>
+                        <p>Available ICU Beds</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="card-icon bg-green"><i class="fa-solid fa-truck-medical"></i></div>
+                    <div class="card-info">
+                        <h3>12</h3>
+                        <p>Active Ambulances</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="card-icon bg-teal"><i class="fa-solid fa-briefcase-medical"></i></div>
+                    <div class="card-info">
+                        <h3>03</h3>
+                        <p>Trauma Centers</p>
+                    </div>
+                </div>
+
+                <div class="metric-card card-alert">
+                    <div class="card-icon bg-red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="card-info">
+                        <h3>HIGH</h3>
+                        <p>Emergency Occupancy</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Middle Filter Row -->
+            <section class="filter-panel">
+                <div class="filter-group">
+                    <label>Hospital Type</label>
+                    <select id="typeFilter">
+                        <option value="">All Types</option>
+                        <option value="Government">Government</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Equipment</label>
+                    <select id="equipmentFilter">
+                        <option value="">All Equipment</option>
+                        <option value="X-Ray">X-Ray</option>
+                        <option value="CT Scan">CT Scan</option>
+                        <option value="MRI Machine">MRI Machine</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Services</label>
+                    <select id="serviceFilter">
+                        <option value="">All Services</option>
+                        <option value="Blood Test">Blood Test</option>
+                        <option value="ECG">ECG</option>
+                        <option value="Ultrasound">Ultrasound</option>
+                    </select>
+                </div>
+
+                <div class="filter-group checkbox-group">
+                    <label><input type="checkbox" id="insuranceFilter"> Insurance Only</label>
+                </div>
+
+                <button id="searchBtn" class="search-btn" onclick="findHospitals()">
+                    <i class="fa-solid fa-magnifying-glass"></i> Find Hospitals
+                </button>
+            </section>
+
+            <!-- Results Section Grid -->
+            <section class="results-section">
+                <h3>Nearby Hospitals (Sorted by Nearest)</h3>
+                <div id="hospitalList" class="hospital-grid">
+                    <p class="placeholder-text">Click "Find Hospitals" to load live facilities.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal for Doctor Schedule & Details -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalHospitalName">Hospital Details</h2>
+            <p id="modalBeds">Available Beds: --</p>
+            <p id="modalInsurance">Accepts Insurance: --</p>
+            <h3>Available Doctors & Schedule</h3>
+            <div id="doctorList"></div>
+            <button id="modalDirectionsBtn" class="directions-btn"><i class="fa-solid fa-location-arrow"></i> Get Navigation Directions</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- SOS Ambulance Dispatch Modal -->
+    <div id="sosModal" class="modal">
+        <div class="modal-content sos-content">
+            <span class="close-btn" onclick="closeModal('sosModal')">&times;</span>
+            <div class="sos-header">
+                <i class="fa-solid fa-truck-medical sos-icon"></i>
+                <h2>Request Emergency Ambulance</h2>
+            </div>
+            <p>Your current location will be broadcast to the nearest available unit.</p>
+            <div class="form-group">
+                <label>Emergency Type</label>
+                <select id="sosType">
+                    <option>Cardiac Emergency</option>
+                    <option>Accident / Trauma</option>
+                    <option>Respiratory Distress</option>
+                    <option>General Emergency</option>
+                </select>
+            </div>
+            <button class="sos-confirm-btn" onclick="triggerSOS()">🚨 Dispatch Nearest Ambulance Now</button>
+            <div id="sosStatus" class="sos-status"></div>
+        </div>
+    </div>
+
+    <!-- Doctor List Modal -->
+    <div id="allDoctorsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('allDoctorsModal')">&times;</span>
+            <h2>On-Duty Specialists Directory</h2>
+            <div id="globalDoctorList" class="doc-directory"></div>
+        </div>
+    </div>
+
+    <!-- Appointment Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('bookingModal')">&times;</span>
+            <h2>Book OPD Appointment</h2>
+            <form onsubmit="confirmBooking(event)">
+                <div class="form-group">
+                    <label>Patient Full Name</label>
+                    <input type="text" id="patientName" placeholder="Enter patient name" required>
+                </div>
+                <div class="form-group">
+                    <label>Select Hospital</label>
+                    <select id="bookingHospital">
+                        <option>Sub District Hospital Panvel</option>
+                        <option>MGM Hospital & Research Centre</option>
+                        <option>Lifeline Hospital Panvel</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" id="bookingDate" required>
+                </div>
+                <button type="submit" class="search-btn" style="width: 100%; margin-top: 10px;">Confirm Appointment</button>
+            </form>
+            <div id="bookingConfirmation"></div>
+        </div>
+    </div>
+</body>
+</html>
