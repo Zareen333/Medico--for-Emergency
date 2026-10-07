@@ -431,35 +431,109 @@ body {
     color: #1f3a52;
 }
 
-/* Dark Mode Theme */
+/* --- Corrected Dark Mode Theme --- */
 body.dark-theme {
-    background: #0f1e2d;
+    background: #0b1724;
 }
 
 body.dark-theme .dashboard-container {
-    background-color: #152738;
-    border-color: #2c4760;
+    background-color: #122334;
+    border-color: #243c53;
 }
 
 body.dark-theme .main-content,
 body.dark-theme .top-header h2,
 body.dark-theme .dashboard-banner h1,
 body.dark-theme .results-section h3,
-body.dark-theme .hospital-card h3 {
+body.dark-theme .hospital-card h3,
+body.dark-theme .filter-group label,
+body.dark-theme .checkbox-group label,
+body.dark-theme .placeholder-text {
+    color: #ffffff !important;
+}
+
+/* Metric Card Numbers & Labels */
+body.dark-theme .metric-card {
+    background-color: #1a3148;
+    border-color: #2b4966;
+}
+
+body.dark-theme .card-info h3 {
+    color: #ffffff !important;
+}
+
+body.dark-theme .card-info p {
+    color: #a0b6cc !important;
+}
+
+body.dark-theme .card-alert {
+    background-color: #2a1b22;
+    border-color: #5c232a;
+}
+
+body.dark-theme .card-alert .card-info h3 {
+    color: #ff6b6b !important;
+}
+
+body.dark-theme .card-alert .card-info p {
+    color: #f8a5a5 !important;
+}
+
+/* Filter Section & Inputs */
+body.dark-theme .filter-panel {
+    background-color: #1a3148;
+    border-color: #2b4966;
+}
+
+body.dark-theme .filter-group select {
+    background-color: #122334;
+    color: #ffffff;
+    border-color: #315170;
+}
+
+body.dark-theme .filter-group select option {
+    background-color: #122334;
     color: #ffffff;
 }
 
-body.dark-theme .metric-card,
-body.dark-theme .filter-panel,
-body.dark-theme .hospital-card,
-body.dark-theme .search-box,
-body.dark-theme .icon-btn {
-    background-color: #1f384f;
-    border-color: #2c4d6c;
-    color: #ffffff;
+/* Search Box & Top Icons */
+body.dark-theme .search-box {
+    background-color: #1a3148;
+    border-color: #2b4966;
 }
 
 body.dark-theme .search-box input {
     background-color: transparent;
     color: #ffffff;
+}
+
+body.dark-theme .search-box input::placeholder {
+    color: #8da4b8;
+}
+
+body.dark-theme .icon-btn {
+    background-color: #1a3148;
+    border-color: #2b4966;
+    color: #ffffff;
+}
+
+/* Hospital Cards */
+body.dark-theme .hospital-card {
+    background-color: #1a3148;
+    border-color: #2b4966;
+}
+
+body.dark-theme .hospital-card p {
+    color: #c0d1e0;
+}
+
+body.dark-theme .action-btn {
+    background-color: #122334;
+    color: #ffffff;
+    border-color: #436688;
+}
+
+body.dark-theme .action-btn:hover {
+    background-color: #ffffff;
+    color: #122334;
 }
